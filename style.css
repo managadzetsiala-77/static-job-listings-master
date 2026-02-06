@@ -1,0 +1,175 @@
+@import url("https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  max-width: 100vw;
+  min-height: 100vh;
+  background-color: #effafa;
+  font-family: "League Spartan";
+}
+header {
+  width: 100%;
+  height: 154px;
+  background-color: #5ca5a5;
+  background-image: url(./images/bg-header-desktop.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.searchBox {
+  padding: 23px 25px;
+  width: 100%;
+  background-color: white;
+  margin-bottom: -76px;
+  border-radius: 5px;
+  box-shadow: 0 15px 20px -5px rgba(13, 113, 130, 0.15);
+  display: inline-block;
+  padding: 5px;
+}
+#search-input {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  outline: none;
+}
+.technology {
+  background-color: #eff6f6;
+  border-radius: 4px;
+  border: none;
+  overflow: hidden;
+
+  .close {
+    background-color: #5ca5a5;
+    display: inline-block;
+    height: 100%;
+    padding: 11px;
+  }
+
+  .title {
+    padding: 5px 11px 5px 8px;
+    display: inline-block;
+    background-color: #eff6f6;
+    color: #5ca5a5;
+    font-family: "League Spartan";
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: -0.123px;
+  }
+}
+main {
+  padding: 24px;
+}
+.company {
+  padding: 39px 24px 24px 24px;
+  margin-top: 40px;
+  border-radius: 5px;
+  background: #fff;
+  box-shadow: 0 15px 20px -5px rgba(13, 113, 130, 0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  img {
+    width: 48px;
+    height: 48px;
+    margin-top: -64px;
+  }
+}
+hr {
+  width: 100%;
+  height: 1px;
+  background-color: #b7c4c4;
+  border: none;
+  margin: 16px 0;
+}
+.top {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  justify-content: center;
+
+  .info-1 {
+    width: 100%;
+
+    .company-name {
+      margin-right: 33px;
+      color: #5ca5a5;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .new-tag {
+      margin-right: 8px;
+      border-radius: 12px;
+      background: #5ca5a5;
+      padding: 7px 8px 3px 8px;
+      color: #fff;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 14px;
+      letter-spacing: -0.108px;
+      text-transform: uppercase;
+      display: inline-block;
+    }
+
+    .featured-tag {
+      padding: 6px 8px 3px 8px;
+      border-radius: 12px;
+      background: #2b3939;
+      color: #fff;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 14px;
+      letter-spacing: -0.108px;
+      text-transform: uppercase;
+      /* display: inline-block; */
+    }
+  }
+  .profession {
+    color: #2b3939;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px; /* 160% */
+  }
+  .info_2 {
+    display: flex;
+    gap: 20px;
+    span {
+      color: #7c8f8f;
+      text-align: center;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 24px; /* 150% */
+      letter-spacing: -0.123px;
+    }
+  }
+}
+.tag {
+  color: #5ca5a5;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px; /* 150% */
+  letter-spacing: -0.123px;
+  border: none;
+  border-radius: 4px;
+  background-color: #eff7f7;
+  padding: 5px 11px 3px 8px;
+}
