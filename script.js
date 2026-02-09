@@ -151,56 +151,86 @@ const date = [
   },
 ];
 
+let filterData = [];
 const mainElement = document.querySelector("main");
-let finalString = ``;
+const searchTnput = document.querySelector("#search-input");
+renderCompanies(date);
+console.log(searchTnput);
 
-date.forEach((company) => {
-  const companyTemplate = `
-  <div class="company">
-      <img src=${company.logo} alt="">
-      <div class="top">
-        <div class="info-1">
-          <span class="company-name">${company.company}</span>
-          ${company.new ? `<span class="new-tag">NEW!</span>` : ""}
-          ${
-            company.featured
-              ? `<span class="featured-tag">FEATURED</span> `
-              : ""
-          }
-          
-        </div>
-        <p class="profession">${company.position}</p>
-        <div class="info_2">
-          <span>${company.postedAt}</span>
-          <span>${company.contract}</span>
-          <span>${company.location}</span>
-        </div>
-      </div>
-      <hr>
-      <div class="bot">
-   
-      <button class="tag">${company.role}</button>
-      <button class="tag">${company.level}</button>
+searchTnput.addEventListener("input", () => {
+  let searchWord = searchTnput.value;
+  console.log(searchWord);
 
-      ${company.languages.map((language) => {
-        console.log(language);
-
-        return `<button class="tag">${language}</button>`;
-      })}
-
-       ${company.tools.map((tool) => {
-         console.log(tool);
-
-         return `<button class="tag">${tool}</button>`;
-       })}
- 
-   </div>
- 
-    </div>
-
-
-
-`;
-  finalString += companyTemplate;
+  filterData = date.filter((company) => {
+    return (
+      company.role.toLowerCase().includes(searchWord.toLowerCase().trim()) ||
+      company.level.toLowerCase().includes(searchWord.toLowerCase().trim()) ||
+      company.languages.some((lang) =>
+        lang.toLowerCase().includes(searchWord.toLowerCase().trim())
+      ) ||
+      company.tools.some((tool) =>
+        tool.toLowerCase().includes(searchWord.toLowerCase().trim())
+      ) //masivisTvis
+    );
+  });
+  renderCompanies(filterData)
 });
-mainElement.innerHTML = finalString;
+
+function renderCompanies(array) {
+  let finalString = ``;
+
+  array.forEach((company) => {
+    const companyTemplate = `
+    <div class="company">
+        <img src=${company.logo} alt="">
+        <div class="top">
+          <div class="info-1">
+            <span class="company-name">${company.company}</span>
+            ${company.new ? `<span class="new-tag">NEW!</span>` : ""}
+            ${
+              company.featured
+                ? `<span class="featured-tag">FEATURED</span> `
+                : ""
+            }
+            
+          </div>
+          <p class="profession">${company.position}</p>
+          <div class="info_2">
+            <span>${company.postedAt}</span>
+            <span>${company.contract}</span>
+            <span>${company.location}</span>
+          </div>
+        </div>
+        <hr>
+        <div class="bot">
+     
+        <button class="tag">${company.role}</button>
+        <button class="tag">${company.level}</button>
+  
+        ${company.languages
+          .map((language) => {
+            // console.log(language);
+
+            return `<button class="tag">${language}</button>`;
+          })
+          .join(" ")}
+  
+         ${company.tools
+           .map((tool) => {
+             //  console.log(tool);
+
+             return `<button class="tag">${tool}</button>`;
+           })
+           .join(" ")}
+   
+     </div>
+   
+      </div>
+  
+  
+  
+  `;
+    finalString += companyTemplate;
+  });
+  mainElement.innerHTML = finalString;
+}
