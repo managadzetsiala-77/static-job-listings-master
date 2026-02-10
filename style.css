@@ -34,6 +34,9 @@ header {
   box-shadow: 0 15px 20px -5px rgba(13, 113, 130, 0.15);
   display: inline-block;
   padding: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 #search-input {
   width: 100%;
@@ -173,7 +176,7 @@ hr {
   background-color: #eff7f7;
   padding: 5px 11px 3px 8px;
 }
-.bot{
+.bot {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;

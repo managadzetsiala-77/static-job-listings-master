@@ -151,29 +151,25 @@ const date = [
   },
 ];
 
-let filterData = [];
+let filteredData = [];
+let searchWords = [];
 const mainElement = document.querySelector("main");
 const searchTnput = document.querySelector("#search-input");
+
 renderCompanies(date);
-console.log(searchTnput);
+// console.log(searchTnput);
 
 searchTnput.addEventListener("input", () => {
-  let searchWord = searchTnput.value;
-  console.log(searchWord);
+  searchWords = searchTnput.value
+    .split(" ")
+    .filter((word) => word !== "")
+    .map((word) => word.toLowerCase());
+  console.log(searchWords);
 
-  filterData = date.filter((company) => {
-    return (
-      company.role.toLowerCase().includes(searchWord.toLowerCase().trim()) ||
-      company.level.toLowerCase().includes(searchWord.toLowerCase().trim()) ||
-      company.languages.some((lang) =>
-        lang.toLowerCase().includes(searchWord.toLowerCase().trim())
-      ) ||
-      company.tools.some((tool) =>
-        tool.toLowerCase().includes(searchWord.toLowerCase().trim())
-      ) //masivisTvis
-    );
-  });
-  renderCompanies(filterData)
+  filteredData = filterData(date, searchWords);
+
+  displayButtons(searchWords);
+  renderCompanies(filteredData);
 });
 
 function renderCompanies(array) {
@@ -233,4 +229,45 @@ function renderCompanies(array) {
     finalString += companyTemplate;
   });
   mainElement.innerHTML = finalString;
+}
+
+function displayButtons(words) {
+  let finalyString = ``;
+
+  words.forEach((word) => {
+    const tamplate = `
+  <button class="technology">
+        <span class="title">${word}</span>
+        <span class="close" onClick="handleClick('${word}')"
+          ><img src="./images/icon-remove.svg" alt=""
+        /></span>
+      </button>
+  
+  `;
+    finalyString += tamplate;
+  });
+
+  document.querySelector(".searchBox").innerHTML = finalyString;
+}
+function handleClick(word) {
+  searchWords = searchWords.filter((item) => {
+    return item !== word;
+  });
+  filteredData = filterData(date, searchWords);
+  renderCompanies(filteredData);
+  displayButtons(searchWords);
+  searchTnput.value = searchWords;
+}
+
+function filterData(date, searchWords) {
+  return date.filter((company) => {
+    return searchWords.every((word) => {
+      return (
+        company.role.toLowerCase().includes(word) ||
+        company.level.toLowerCase().includes(word) ||
+        company.languages.some((lang) => lang.toLowerCase().includes(word)) ||
+        company.tools.some((tool) => tool.toLowerCase().includes(word))
+      );
+    });
+  });
 }
